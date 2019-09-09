@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
+import SinglePost from "./components/SinglePost";
+import { Router, Switch,Route } from 'react-router-dom';
 import './App.css';
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import { createBrowserHistory } from 'history';
 
-function App() {
+
+export const history = createBrowserHistory();
+const App =() => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <div>
+        
+
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/dashboard/:userName"  component={Dashboard} />
+        <Route path="/login" component={Login} />
+        <Route path="/post/:id" component={SinglePost} />
+
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
+
 export default App;
+
+
+
+// https://www.youtube.com/watch?v=KbzyrKnJOZU&list=PLD8nQCAhR3tTzWA8K5XQQps4u5kMFJjIG&index=4
+
+
+// https://github.com/imranhsayed/react-with-wordpress
