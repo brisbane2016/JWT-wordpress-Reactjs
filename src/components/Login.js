@@ -6,6 +6,7 @@ import axios from 'axios';
 import clientConfig from '../client-config';
 //import {history} from '../App';
 import { Redirect } from 'react-router-dom';
+
 class Login extends React.Component {
 
 	constructor( props ) {
@@ -35,11 +36,15 @@ class Login extends React.Component {
 			username: this.state.username,
 			password: this.state.password,
 		};
-
+        const headers = {
+           
+            'Content-Type': "application/json",
+            'X-Content-Type-Options': "nosniff"
+          }
 		this.setState( { loading: true }, () => {
-			axios.post( `${siteUrl}/wp-json/jwt-auth/v1/token`, loginData )
+			axios.post( `${siteUrl}/wp-json/jwt-auth/v1/token`, loginData,headers)
 				.then( res => {
-
+                    console.log(res);
 					if ( undefined === res.data.token ) {
 						this.setState( { error: res.data.message, loading: false } );
 						return;
@@ -73,14 +78,17 @@ class Login extends React.Component {
 
 		const { username, password, userNiceName, loggedIn, error, loading } = this.state;
 
-		const user = ( userNiceName ) ? userNiceName : localStorage.getItem( 'userName' );
+        const user = ( userNiceName ) ? userNiceName : localStorage.getItem( 'userName' );
+        
+        
 
-		if ( loggedIn || localStorage.getItem( 'token' ) ) {
+
+        if ( loggedIn || localStorage.getItem( 'token' ) ) {
             return (
                 <div>
                     {
                      //history.push(`/dashboard/${user}`)
-                    <Redirect to={`/dashboard/${user}`} />
+                     <Redirect to={`/dashboard/${user}`} />
                     }
 
                 </div>

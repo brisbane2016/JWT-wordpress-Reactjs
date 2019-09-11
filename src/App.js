@@ -5,7 +5,9 @@ import './App.css';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import CreatePost from "./components/CreatePost";
 import { createBrowserHistory } from 'history';
+
 
 
 export const history = createBrowserHistory();
@@ -20,6 +22,8 @@ const App =() => {
         <Route path="/dashboard/:userName"  component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/post/:id" component={SinglePost} />
+        
+        <Route path="/create" component={CreatePost} />
 
         </Switch>
       </div>

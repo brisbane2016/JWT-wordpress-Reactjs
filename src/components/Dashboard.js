@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from "./Navbar";
-//import CreatePost from "./CreatePost";
+import CreatePost from "./CreatePost";
 
 class Dashboard extends React.Component {
 
@@ -13,18 +13,18 @@ class Dashboard extends React.Component {
     render() {
       
         return (
-            // <React.Fragment>
-            <div>
+            
+            <>
                 <Navbar />
                 <div className="jumbotron" style={{ height: '100vh' }}>
                     <h4>Welcome {this.props.match.params.userName && this.props.match.params.userName}!!</h4>
-                    {/* <CreatePost/> */}
+                    <CreatePost/> 
                 </div>
 
 
-            </div>
+            </>
 
-            // </React.Fragment>
+           
         )
     }
 }
